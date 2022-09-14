@@ -127,7 +127,7 @@ def _run_mining(cfg: edict, task_idx: int = 0, task_num: int = 1) -> None:
     gpu_count: int = len(gpu_id.split(',')) if gpu_id else 0
 
     if gpu_count <= 1:
-        command = 'python3 mining/mining_cald.py'
+        command = 'python3 mining/mining_entropy.py'
     else:
         port = find_free_port()
         command = f'python3 -m torch.distributed.launch --nproc_per_node {gpu_count} --master_port {port} mining/ymir_mining.py'  # noqa

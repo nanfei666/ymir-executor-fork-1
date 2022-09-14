@@ -114,7 +114,7 @@ class YmirYolov5(torch.nn.Module):
 
         return model
 
-    def predict(self, img: CV_IMAGE) -> NDArray:
+    def predict(self, img: CV_IMAGE,nms=True) -> NDArray:
         """
         predict single image and return bbox information
         img: opencv BGR, uint8 format
@@ -129,7 +129,7 @@ class YmirYolov5(torch.nn.Module):
 
         img1 = img1 / 255  # 0 - 255 to 0.0 - 1.0
         img1.unsqueeze_(dim=0)  # expand for batch dim
-        pred = self.forward(img1, nms=True)
+        pred = self.forward(img1, nms)
 
         result = []
         for det in pred:
